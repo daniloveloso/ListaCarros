@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.veloso.danilo.listacarros.pacote_carro.Carro;
 
 import java.io.IOException;
@@ -61,21 +63,27 @@ class BuscaDadosRede extends AsyncTask<URL, Void, ArrayList> {
     // Mpétodo que executa a thread em segunso plano
     public ArrayList<Carro> doInBackground(URL...urls) {
         OkHttpClient client = new OkHttpClient();
+        Gson gson = new Gson();
+        ArrayList<Carro> listaCarros = new ArrayList();
+
 
         Request request = new Request.Builder().url(urls[0]).build();
         try{
             Response response = client.newCall(request).execute();
-            String teste = response.body().string();
-            teste+="";
+            String json = response.body().string();
+            listaCarros = gson.fromJson(json,new TypeToken<ArrayList<Carro>>(){}.getType());
+
         }catch (IOException e){
             e.printStackTrace();
+
         }
-        return null;
+        return listaCarros;
     }
     //Método que execulta apóos a conclusão da thread
     //Código chamado ja na thread principal
     public void onPostExecute(ArrayList<Carro> carros){
 
+        int i =0;
 
     }
 
