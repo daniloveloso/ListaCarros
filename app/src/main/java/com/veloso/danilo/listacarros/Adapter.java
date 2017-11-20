@@ -83,7 +83,9 @@ class BuscaDadosRede extends AsyncTask<URL, Void, ArrayList> {
     //Código chamado ja na thread principal
     public void onPostExecute(ArrayList<Carro> carros){
 
-        int i =0;
+        //PEGAR A REFERENCIA DO LIST VIEW
+        //CRIAR O ADAPTER PASSANDO O ARRAYLIST POR PARAMETRO
+        //VINCULAR O ADAPTER AO LISTVIEW
 
     }
 
